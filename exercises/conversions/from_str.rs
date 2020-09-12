@@ -23,6 +23,12 @@ struct Person {
 impl FromStr for Person {
     type Err = String;
     fn from_str(s: &str) -> Result<Person, Self::Err> {
+        if s.len() == 0 {
+            return Err(String::from("Empty string"));
+        }
+
+        let v = s.split(',').collect::<Vec<&str>>();
+        if v[0].len() < 0 {}
     }
 }
 
@@ -82,4 +88,5 @@ mod tests {
     fn missing_name_and_invalid_age() {
         ",one".parse::<Person>().unwrap();
     }
+
 }
